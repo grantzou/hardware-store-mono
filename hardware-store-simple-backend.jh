@@ -1,0 +1,48 @@
+application {
+  config {
+    baseName HardwareStoreSimple,
+    applicationType monolith,
+    authenticationType jwt,
+    packageName com.hardwarestore.simple,
+    databaseType sql,
+    devDatabaseType mysql,
+    prodDatabaseType mysql,
+    buildTool gradle,
+    cacheProvider ehcache,
+    enableHibernateCache true,
+    messageBroker false
+    serviceDiscoveryType no,
+    reactive false,
+    skipUserManagement false,
+    skipClient true,
+  }
+  entities Product, Order
+}
+
+entity Product {
+  name String required,
+  description String,
+  price BigDecimal required,
+  quantity Integer required
+}
+
+entity Order {
+  orderDate Instant required,
+  status OrderStatus required,
+  totalPrice BigDecimal required
+}
+
+enum OrderStatus {
+  PENDING, COMPLETED, CANCELLED
+}
+
+relationship OneToMany {
+  Product{order} to Order{product(name)}
+}
+
+service Product, Order with serviceClass
+
+microservice Product with product-service
+microservice Order with order-service
+
+paginate Product, Order with pagination
