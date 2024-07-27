@@ -122,23 +122,23 @@ project.ext.diffChangelogFile = "src/main/resources/config/liquibase/changelog/"
 liquibase {
     activities {
         main {
-            driver "com.mysql.cj.jdbc.Driver"
-            url "jdbc:mysql://localhost:3306/HardwareStoreSimple"
-            username "root"
+            driver "org.h2.Driver"
+            url "jdbc:h2:file:./build/h2db/db/hardwarestoresimple"
+            username "HardwareStoreSimple"
             password ""
             changeLogFile "src/main/resources/config/liquibase/master.xml"
-            defaultSchemaName "HardwareStoreSimple"
+            defaultSchemaName ""
             logLevel "debug"
             classpath "src/main/resources/"
         }
         diffLog {
-            driver "com.mysql.cj.jdbc.Driver"
-            url "jdbc:mysql://localhost:3306/HardwareStoreSimple"
-            username "root"
+            driver "org.h2.Driver"
+            url "jdbc:h2:file:./build/h2db/db/hardwarestoresimple"
+            username "HardwareStoreSimple"
             password ""
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:com.hardwarestore.simple.domain?dialect=org.hibernate.dialect.MySQL8Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-            defaultSchemaName "HardwareStoreSimple"
+            referenceUrl "hibernate:spring:com.hardwarestore.simple.domain?dialect=org.hibernate.dialect.H2Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            defaultSchemaName ""
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
         }

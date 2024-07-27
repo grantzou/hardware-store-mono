@@ -1,7 +1,13 @@
+sourceSets {
+    test {
+        java {
+            exclude 'com/hardwarestore/simple/config/MysqlTestContainer.java'
+        }
+    }
+}
 dependencies {
     developmentOnly "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-    implementation "mysql:mysql-connector-java"
-    liquibaseRuntime "mysql:mysql-connector-java"
+    implementation "com.h2database:h2"
     testImplementation "org.testcontainers:mysql"
 }
 

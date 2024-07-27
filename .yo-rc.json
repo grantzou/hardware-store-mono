@@ -13,7 +13,7 @@
     "clientThemeVariant": "",
     "creationTimestamp": 1722033163722,
     "databaseType": "sql",
-    "devDatabaseType": "mysql",
+    "devDatabaseType": "h2Disk",
     "dtoSuffix": "DTO",
     "enableGradleEnterprise": false,
     "enableHibernateCache": true,

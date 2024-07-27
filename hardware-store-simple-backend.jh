@@ -5,7 +5,7 @@ application {
     authenticationType jwt,
     packageName com.hardwarestore.simple,
     databaseType sql,
-    devDatabaseType mysql,
+    devDatabaseType h2Disk,
     prodDatabaseType mysql,
     buildTool gradle,
     cacheProvider ehcache,
