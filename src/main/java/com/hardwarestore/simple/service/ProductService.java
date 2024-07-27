@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,7 @@ public class ProductService {
      * @param product the entity to save.
      * @return the persisted entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public Product save(Product product) {
         log.debug("Request to save Product : {}", product);
         return productRepository.save(product);
@@ -42,6 +44,7 @@ public class ProductService {
      * @param product the entity to save.
      * @return the persisted entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public Product update(Product product) {
         log.debug("Request to update Product : {}", product);
         return productRepository.save(product);
@@ -53,6 +56,7 @@ public class ProductService {
      * @param product the entity to update partially.
      * @return the persisted entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public Optional<Product> partialUpdate(Product product) {
         log.debug("Request to partially update Product : {}", product);
 
@@ -106,6 +110,7 @@ public class ProductService {
      *
      * @param id the id of the entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(Long id) {
         log.debug("Request to delete Product : {}", id);
         productRepository.deleteById(id);
