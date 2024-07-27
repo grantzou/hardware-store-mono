@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +43,7 @@ public class OrderService {
      * @param order the entity to save.
      * @return the persisted entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public Order update(Order order) {
         log.debug("Request to update Order : {}", order);
         return orderRepository.save(order);
@@ -53,6 +55,7 @@ public class OrderService {
      * @param order the entity to update partially.
      * @return the persisted entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public Optional<Order> partialUpdate(Order order) {
         log.debug("Request to partially update Order : {}", order);
 
@@ -112,6 +115,7 @@ public class OrderService {
      *
      * @param id the id of the entity.
      */
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(Long id) {
         log.debug("Request to delete Order : {}", id);
         orderRepository.deleteById(id);
